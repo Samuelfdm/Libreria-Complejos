@@ -39,13 +39,3 @@ def faseComplex(num):
 a = (1, 1)
 
 b = (1, 2)
-
-#print(multiComplex(a, b))
-#print(sumComplex(a, b))
-#print(restaComplex(a, b))
-#print(diviComplex(a, b))
-#print(moduloComplex(a))
-#print(conjugadoComplex(a))
-#print(cartesian_to_polarComplex(a))
-#print(polar_to_cartesianComplex(a))
-#print(faseComplex(a))

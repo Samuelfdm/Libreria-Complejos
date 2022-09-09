@@ -27,19 +27,21 @@ def moduloComplex(num):
 def conjugadoComplex(num):
     return (num[0], num[1]*-1)
 
-# Convierte un número complejo de forma cartesiana a forma polar
+# Convierte un número complejo de forma cartesiana a forma polar:
 def cartesian_to_polarComplex(num):
     p = moduloComplex(num)
     angulo = math.atan(num[1]/num[0])
     return (p, angulo)
 
-# Convierte un número complejo de forma polar a forma cartesiana
+# Convierte un número complejo de forma polar a forma cartesiana:
 def polar_to_cartesianComplex(num):
     r = cartesian_to_polarComplex(num)
     a = r[0]*math.cos(r[1])
     b = r[0]*math.sin(r[1])
     return (a, b)
 
-# Devuelve la fase de un número complejo
+# Devuelve la fase de un número complejo:
 def faseComplex(num):
     return math.atan(num[1]/num[0])
+
+# Suma dos vectores complejos:

@@ -63,7 +63,7 @@ def inversoVectorComplex(v):
 def escalarVectorComplex(c, v):
     v2 = []
     for i in range(len(v)):
-        v2.append(multiComplex(c, v[i]))
+        v2.append(productComplex(c, v[i]))
     return v2
 
 # Suma dos matrices complejas:
@@ -150,9 +150,26 @@ def accionMatrizVectorComplex(m, v):
     return v_new
 
 # Calcula el producto interno de dos vectores:
-#def innerProductVectorComplex(v1,v2):
+def innerProductVectorComplex(v1, v2):
+    v_con = conjugadaVectorComplex(v1)
+    acum = (0, 0)
+    for i in range(len(v_con)):
+        acum = sumComplex(acum, productComplex(v_con[i], v2[i]))
+    return acum
 
-#v1 = [(5, 4), (0, 1)]
-#v2 = [(-13, -2), (5, -7)]
+# Calcula la norma de un vector:
+def normaVectorComplex(v):
+    return math.sqrt(innerProductVectorComplex(v,v)[0])
 
-print(innerProductVectorComplex(v1, v2))
+# Calcula la distancia entre dos vectores:
+def distanciaVectorComplex(v1,v2):
+    v3 = []
+    for i in range(len(v1)):
+        v3.append(restaComplex(v1[i], v2[i]))
+    return normaVectorComplex(v3)
+
+# Determina si una matriz es hermitiana:
+def hermitianaMatrizComplex(m):
+    return adjuntaMatrizComplex(m)==m
+
+# Determina si una matriz es unitaria:

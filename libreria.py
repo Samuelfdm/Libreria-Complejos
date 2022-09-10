@@ -202,15 +202,3 @@ def productTensorMatrizComplex(m1, m2):
         for k in range(len(m1[i])):
             m3.append([productComplex(m1[i//a][k//b], m2[i%a][k%b])])
     return m3
-
-v1 = [(0,2), (1,6)]
-v2 = [(0,-5), (3,4), (-2.1,0)]
-
-
-m1 = [[(2,0),(-2,1)],
-     [(2,1),(2,0)]]
-
-m2 = [[(2,0),(-2,1)],
-     [(2,1),(2,0)]]
-
-print(productTensorMatrizComplex(m1,m2))

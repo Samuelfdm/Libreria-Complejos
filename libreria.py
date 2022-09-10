@@ -162,14 +162,55 @@ def normaVectorComplex(v):
     return math.sqrt(innerProductVectorComplex(v,v)[0])
 
 # Calcula la distancia entre dos vectores:
-def distanciaVectorComplex(v1,v2):
+def distanciaVectorComplex(v1, v2):
     v3 = []
     for i in range(len(v1)):
         v3.append(restaComplex(v1[i], v2[i]))
     return normaVectorComplex(v3)
 
+# Determina si una matriz es unitaria:
+def unitariaMatrizComplex(m):
+    m_adj = adjuntaMatrizComplex(m)
+    m_final = productMatrices(m_adj,m)
+    resp = True
+    for i in range(len(m_final)):
+        for k in range(len(m_final[i])):
+            if i == k and m_final[i][k] != (1,0):
+                resp = False
+            elif i != k and m_final[i][k] != (0,0):
+                resp = False
+    return resp
+
 # Determina si una matriz es hermitiana:
 def hermitianaMatrizComplex(m):
     return adjuntaMatrizComplex(m)==m
 
-# Determina si una matriz es unitaria:
+# Calcula el producto tensor entre dos vectores:
+def productTensorVectorComplex(v1, v2):
+    v3 = []
+    for i in range(len(v1)):
+        for k in range(len(v2)):
+            v3.append(productComplex(v1[i],v2[k]))
+    return v3
+
+# Calcula el producto tensor entre dos matrices:
+def productTensorMatrizComplex(m1, m2):
+    a = len(m2)#n
+    b = len(m2[0])#n prima
+    m3 = []
+    for i in range(len(m1)):
+        for k in range(len(m1[i])):
+            m3.append([productComplex(m1[i//a][k//b], m2[i%a][k%b])])
+    return m3
+
+v1 = [(0,2), (1,6)]
+v2 = [(0,-5), (3,4), (-2.1,0)]
+
+
+m1 = [[(2,0),(-2,1)],
+     [(2,1),(2,0)]]
+
+m2 = [[(2,0),(-2,1)],
+     [(2,1),(2,0)]]
+
+print(productTensorMatrizComplex(m1,m2))

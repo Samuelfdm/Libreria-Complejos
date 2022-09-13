@@ -159,7 +159,7 @@ def innerProductVectorComplex(v1, v2):
 
 # Calcula la norma de un vector:
 def normaVectorComplex(v):
-    return math.sqrt(innerProductVectorComplex(v,v)[0])
+    return math.sqrt(innerProductVectorComplex(v, v)[0])
 
 # Calcula la distancia entre dos vectores:
 def distanciaVectorComplex(v1, v2):
@@ -171,34 +171,35 @@ def distanciaVectorComplex(v1, v2):
 # Determina si una matriz es unitaria:
 def unitariaMatrizComplex(m):
     m_adj = adjuntaMatrizComplex(m)
-    m_final = productMatrices(m_adj,m)
+    m_final = productMatrices(m_adj, m)
     resp = True
     for i in range(len(m_final)):
         for k in range(len(m_final[i])):
-            if i == k and m_final[i][k] != (1,0):
+            if i == k and m_final[i][k] != (1, 0):
                 resp = False
-            elif i != k and m_final[i][k] != (0,0):
+            elif i != k and m_final[i][k] != (0, 0):
                 resp = False
     return resp
 
 # Determina si una matriz es hermitiana:
 def hermitianaMatrizComplex(m):
-    return adjuntaMatrizComplex(m)==m
+    return adjuntaMatrizComplex(m) == m
 
 # Calcula el producto tensor entre dos vectores:
 def productTensorVectorComplex(v1, v2):
     v3 = []
     for i in range(len(v1)):
         for k in range(len(v2)):
-            v3.append(productComplex(v1[i],v2[k]))
+            v3.append(productComplex(v1[i], v2[k]))
     return v3
 
 # Calcula el producto tensor entre dos matrices:
 def productTensorMatrizComplex(m1, m2):
-    a = len(m2)#n
-    b = len(m2[0])#n prima
-    m3 = []
-    for i in range(len(m1)):
-        for k in range(len(m1[i])):
-            m3.append([productComplex(m1[i//a][k//b], m2[i%a][k%b])])
+    m3 = [[[]for j in range(len(m1[0])*len(m2[0]))]for i in range(len(m1)*len(m2))]
+    for i in range(len(m1)*len(m2)):
+        for k in range(len(m1[0])*len(m2[0])):
+            x, y = i//len(m2), k//len(m2[0])
+            res = escalarMatrizComplex(m1[x][y], m2)
+            x1, y1 = i % len(m2), k % len(m2[0])
+            m3[i][k] = res[x1][y1]
     return m3

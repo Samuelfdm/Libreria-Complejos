@@ -1,4 +1,4 @@
-# Libreria de números complejos
+# LIBRERÍA DE NÚMEROS COMPLEJOS
 
 ## Versión #1: Operaciones Basicas con numeros complejos.
 
@@ -34,6 +34,15 @@
 #### 15.- Revisar si una matriz es unitaria
 #### 16.- Revisar si una matriz es Hermitiana
 #### 17.- Producto tensor de dos matrices/vectores
+
+# PROGRAMA SIMULACIÓN DE LO CLÁSICO A LO CUÁNTICO
+
+#### En esta primera versión del programa de simulación del salto de lo clásico a lo cuántico, encontramos la solución a los experimentos de:
+
+#### 1.- Experimento de las canicas con coeficiente booleanos
+#### 2.- Experimentos de las múltiples rendijas clásico probabilístico, con más de dos rendijas.
+#### 3.- Experimento de las múltiples rendijas cuántico.
+#### 4.- Función para graficar con un diagrama de barras que muestra las probabilidades de un vector de estados.
 
 ## Desarrollado con:
 - Python - Lenguaje de Programación

@@ -1,3 +1,5 @@
+from matplotlib import pyplot as plt
+import Lib-complex as cpx
 def booleanMatrix(matrix):
     for i in range(len(matrix)):
         for j in range(len(matrix[0])):
@@ -12,3 +14,13 @@ def booleanMatrix(matrix):
     else:
         matrix = matrix
     return matrix
+
+def click(matrix,vector,clicks):
+    a = []
+    for i in range (clicks):
+        a = cM.productMatrix(matrix, matrix)
+    if clicks != 1:
+        res = cM.accionMatrixVector(a,vector)
+    else:
+        res = cM.accionMatrixVector(matrix,vector)
+    return res

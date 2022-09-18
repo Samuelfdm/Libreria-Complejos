@@ -1,5 +1,5 @@
 from matplotlib import pyplot as plt
-import Lib-complex as cpx
+import libComplex as cpx
 def booleanMatrix(matrix):
     for i in range(len(matrix)):
         for j in range(len(matrix[0])):

@@ -18,9 +18,10 @@ def booleanMatrix(matrix):
 def click(matrix,vector,clicks):
     a = []
     for i in range (clicks):
-        a = cM.productMatrix(matrix, matrix)
+        a = cpx.productMatrices(matrix, matrix)
     if clicks != 1:
-        res = cM.accionMatrixVector(a,vector)
+        res = cpx.accionMatrizVectorComplex(a,vector)
     else:
-        res = cM.accionMatrixVector(matrix,vector)
+        res = cpx.accionMatrizVectorComplex(matrix,vector)
     return res
+

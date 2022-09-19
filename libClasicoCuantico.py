@@ -60,3 +60,19 @@ def multiplesRendijasClasicoProbabilistico(rendijas, blancos, clicks):
     return matrix, click(matrix, vector, clicks)
 
 # EJERCICIO DE PROGRAMACIÓN 3.3.2:
+def multiplesRendijasCuantico(rendijas, blancos, clicks):
+    tama = rendijas + (blancos * rendijas)
+    matrix = [[(0, 0) for i in range(tama)] for j in range(tama)]
+    for i in range(1, rendijas+1):
+        matrix[i][0] = (1/2**(1/2), 0)
+    x = rendijas + 1
+    for j in range(1, rendijas+1):
+        matrix[x][j] = (-1 / (6 ** 0.5), 1 / (6 ** 0.5))
+        matrix[x + 1][j] = (-1 / (6 ** 0.5), -1 / (6 ** 0.5))
+        matrix[x + 2][j] = (1 / (6 ** 0.5), -1 / (6 ** 0.5))
+        x += 2
+    for k in range(rendijas+1, tama):
+        matrix[k][k] = (1, 0)
+    vector = [(0, 0) for i in range(tama)]
+    vector[0] = (1, 0)
+    return matrix, click(matrix, vector, clicks)

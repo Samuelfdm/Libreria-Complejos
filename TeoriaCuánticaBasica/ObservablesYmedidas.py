@@ -3,59 +3,62 @@ import math
 import numpy as np
 import libComplex as cpx
 
-def simulacion():
-    x = [[(0, 0), (1, 0)], [(1, 0), (0, 0)]]
-    h = [[((1/2**(1/2)), 0), ((1/2**(1/2)), 0)], [((1/2**(1/2)), 0), ((-1/2**(1/2)), 0)]]
-    o = [(1, 0), (0, 0)]
-    n = len(x[0]) * len(h[0])
-    tensor_o = producto_Tensor(o, o, 1)
-    m1 = producto_Tensor(x, h, 2)
-    m2 = producto_Tensor(h, h, 2)
-    matriz1 = hacermatriz(m1, n)
-    matriz2 = hacermatriz(m2, n)
-    gamma1 = matriz_Producto(matriz1, matriz2)
-    gammafinal = matriz_sobre_Vector(gamma1, tensor_o)
-    prettyprintingsVectores(gammafinal, 1)
+def hacermatriz(m1,n):
+    matriz = [[[0,0] for j in range(n)] for i in range(n)]
+    cont = 0
+    for i in range(len(matriz)):
+        for j in range(len(matriz)):
+            for m in range(len(matriz)):
+                matriz[j][m][0] = m1[cont][0]
+                matriz[j][m][1] = m1[cont][1]
+                cont += 1
+        break
+    cont = 0
+    return(matriz)
+
+def hacervector(v1,x):
+    cont = 0
+    vector = [[0,0] for i in range(x)]
+    for i in range(len(vector)):
+        if cont <= 2:
+            cont += 1
+            for j in range(len(vector)):
+                if cont <= 2:
+                    vector[j][i] = v1[j][0][i]
+    return vector
 
 
-def posibilidad_posicion(vector, posicion):
-    posicion_vector = [[None, None]]
-    posicion_vector[0][0] = vector[posicion][0]
-    posicion_vector[0][1] = vector[posicion][1]
-    posicion_vector = (posicion_vector[0][0]**2+posicion_vector[0][1]**2)
-    v2 = list(vector)
-    vector = matriz_Conjugada(vector, 2)
-    norma = productoI_Interno(vector, v2)
-    norma = (norma[0]+norma[1]) ** (1/2)
-    probabilidad = posicion_vector/norma**2
-    probabilidad = round(probabilidad, 6)
+def hacer_unitaria(m,valor):
+    unitaria = [[[0,0] for j in range(len(m))]for i in range(len(m[0]))]
+    for i in range(len(unitaria)):
+        for j in range(len(unitaria[0])):
+            if i == j:
+                unitaria[i][i][0] = valor
+    return(unitaria)
+
+def normalizarVector(v):
+    norma = cpx.normaVectorComplex(v)
+    return cpx.escalarVectorComplex((1/norma, 0), v)
+
+
+def probabilidad_pos(vector, pos):
+    #vector = normalizarVector(vector)
+    pos_new = (cpx.moduloComplex(vector[pos]))**2
+    #print("Como el vector ya esta normalizado, pos_new ya es en si la probabilidad", pos_new)
+    v_new = cpx.normaVectorComplex(vector)
+    #print("norma",v_new)
+    probabilidad = pos_new/(v_new**2)
     return probabilidad
 
-
 def amplitud_de_transicion(v1, v2):
-    v1, v2 = v2, v1
-    v11 = list(v1)
-    v1 = matriz_Conjugada(v1, 2)
-    norma = productoI_Interno(v1, v11)
-    norma = (norma[0]+norma[1]) ** (1/2)
-    v22 = list(v2)
-    x = len(v22)
-    v2 = matriz_Conjugada(v2, 2)
-    norma2 = productoI_Interno(v2, v22)
-    norma2 = (norma2[0]+norma2[1]) ** (1/2)
-    v2 = hacervector(v2, x)
-    v2 = matriz_Conjugada(v2, 2)
-    v1 = matriz_Transpuesta(v1)
-    producto = matriz_Producto(v1, v2)
-    noma_Total = norma * norma2
-    for i in range(len(producto[0][0])):
-        for j in range(1):
-            producto[0][0][i] = round(producto[0][0][i] / noma_Total, 2)
-    return producto
+    v1 = normalizarVector(v1)
+    v2 = normalizarVector(v2)
+    product = cpx.innerProductVectorComplex(v2, v1)
+    return product
 
 
 def varianza(matriz, vector):
-    x = matriz_Hermitiana(matriz, matriz)
+    x = cpx.hermitianaMatrizComplex(matriz)
     if x:
         print("Es hermitiana.")
     else:
@@ -63,31 +66,44 @@ def varianza(matriz, vector):
 
 
 def mirar_hermitiana(matriz):
-    x = matriz_Hermitiana(matriz, matriz)
+    x = matriz_Hermitiana(matriz)
     if x:
         return True
     else:
         return False
 
-
-def valorEsperado(v, m):
-    v2 = matriz_sobre_Vector(m, v)
-    v2 = hacervector(v2, len(v))
-    v2 = matriz_Conjugada(v2, 2)
-    v2 = hacervector(v2, len(v))
-    valor_esperado = producto_vetores(v2, v)
+def producto_vectores(v1,v2):
+    valor_esperado = 0
+    for i in range(len(v1)):
+        for j in range(len(v2[0])):
+            x = cpx.productComplex(v2[j], v1[j])
+            valor_esperado = valor_esperado + round(x[0]+ x[1], 1)
+        break
     return valor_esperado
 
+def valorEsperado(v, m):
+    v2 = cpx.accionMatrizVectorComplex(m, v)
+    v2 = cpx.conjugadaVectorComplex(v2)
+    valor_esperado = producto_vectores(v2, v)
+    return valor_esperado
+
+def resta_matrices(m1,m2):
+    matrizResta = [[[0,0] for j in range(len(m1))] for i in range(len(m1[0]))]
+    for i in range(len(m1)):
+        for j in range(len(m1[0])):
+            matrizResta[i][j][0] = m1[i][j][0] - m2[i][j][0]
+            matrizResta[i][j][1] = m1[i][j][1] - m2[i][j][1]
+    return matrizResta
 
 def varianza(ket, matriz):
     valor_esperado = valorEsperado(ket, matriz)
     matrizUnitaria = hacer_unitaria(matriz, valor_esperado)
     resta = resta_matrices(matriz, matrizUnitaria)
-    produto = matriz_Producto(resta, resta)
-    produto1 = hacervector(matriz_sobre_Vector(produto, ket), len(ket))
-    conjugada = hacervector(matriz_Conjugada(ket, 2), len(ket))
-    varian = producto_vetores(conjugada, produto1)
-    return(varian)
+    produto = cpx.productMatrices(resta, resta)
+    produto1 = hacervector(cpx.accionMatrizVectorComplex(produto, ket), len(ket))
+    conjugada = hacervector(cpx.conjugadaMatrizComplex(ket), len(ket))
+    varian = producto_vectores(conjugada, produto1)
+    return varian
 
 
 def valores_esperados(matriz, parametro):
@@ -147,12 +163,11 @@ def probabilidad(vector_estado1, vector_estado2, matriz, valor):
 def comprobar_producto(m1, m2):
     m3 = m1
     m4 = m2
-    bandera1 = matriz_Hermitiana(m1, m3)
-    bandera2 = matriz_Hermitiana(m2, m4)
+    bandera1 = cpx.hermitianaMatrizComplex(m1, m3)
+    bandera2 = cpx.hermitianaMatrizComplex(m2, m4)
     if bandera1 and bandera2:
-        producto = matriz_Producto(m1, m2)
-        m5 = producto
-        bandera3 = matriz_Hermitiana(producto, m5)
+        producto = cpx.productMatrices(m1, m2)
+        bandera3 = cpx.hermitianaMatrizComplex(producto)
         if bandera3:
             return bandera3
         else:
@@ -164,14 +179,22 @@ def comprobar_producto(m1, m2):
 def probabilidad_3_clic(m, v):
     x = len(v)
     for i in range(3):
-        vector = matriz_sobre_Vector(m, v)
+        vector = cpx.accionMatrizVectorComplex(m, v)
         vector = hacervector(vector, x)
         v = vector
     probabilidad = round(v[2][0] ** 2 + v[2][1] ** 2, 4)
     return probabilidad
 
-def modulo(num):
-    return cpx.moduloComplex(num)
-
-num = (2,3)
-print(modulo(num))
+def simulacion():
+    x = [[(0, 0), (1, 0)], [(1, 0), (0, 0)]]
+    h = [[((1/2**(1/2)), 0), ((1/2**(1/2)), 0)], [((1/2**(1/2)), 0), ((-1/2**(1/2)), 0)]]
+    o = [(1, 0), (0, 0)]
+    n = len(x[0]) * len(h[0])
+    tensor_o = cpx.productTensorVectorComplex(o, o)
+    m1 = cpx.productTensorMatrizComplex(x, h)
+    m2 = cpx.productTensorMatrizComplex(h, h)
+    matriz1 = hacermatriz(m1, n)
+    matriz2 = hacermatriz(m2, n)
+    gamma1 = cpx.productMatrices(matriz1, matriz2)
+    gammafinal = cpx.accionMatrizVectorComplex(gamma1, tensor_o)
+    return gammafinal

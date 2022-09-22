@@ -1,6 +1,7 @@
 from fractions import Fraction
 import math
 import numpy as np
+import libComplex as cpx
 
 def simulacion():
     x = [[(0, 0), (1, 0)], [(1, 0), (0, 0)]]
@@ -168,3 +169,9 @@ def probabilidad_3_clic(m, v):
         v = vector
     probabilidad = round(v[2][0] ** 2 + v[2][1] ** 2, 4)
     return probabilidad
+
+def modulo(num):
+    return cpx.moduloComplex(num)
+
+num = (2,3)
+print(modulo(num))

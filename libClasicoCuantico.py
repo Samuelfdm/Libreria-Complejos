@@ -76,3 +76,15 @@ def multiplesRendijasCuantico(rendijas, blancos, clicks):
     vector = [(0, 0) for i in range(tama)]
     vector[0] = (1, 0)
     return matrix, click(matrix, vector, clicks)
+
+# DIAGRAMAS
+def diagramaProbabilistico(vector):
+    prob = [i for i in range(len(vector))]
+    plt.bar(prob, vector, color="#FF0080")
+    plt.show()
+
+def diagramaCuantico(v):
+    vector = [(cpx.moduloComplex(v[i]))**2 for i in range(len(v))]
+    prob = [i for i in range(len(vector))]
+    plt.bar(prob, vector, color="#FF0080")
+    plt.show()

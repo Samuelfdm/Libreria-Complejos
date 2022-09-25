@@ -28,3 +28,15 @@ El sistema consiste en una partícula confinada a un conjunto discreto de posici
 2. 4.3.2.
 3. 4.4.1.
 4. 4.4.2.
+
+## Desarrollado con:
+- Python - Lenguaje de Programación
+## Construido con:
+- [PyCharm](https://www.jetbrains.com/pycharm/) - IDE de Python
+## Autor:
+- **Samuel Felipe Díaz** - [*Samuelfdm*](https://github.com/Samuelfdm)
+## Agradecimientos:
+- #### Profesor Luis Benavidez
+- <https://gist.github.com/PurpleBooth/109311bb0361f32d87a2>
+- <https://www.youtube.com/watch?v=SWYqp7iY_Tc>
+- <https://www.markdownguide.org/>

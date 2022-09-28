@@ -7,6 +7,21 @@ def verifiMatrizCuadrada(m):
     else:
         return False
 
+def matrizUnitaria(longitud):
+    matriz = [[(0, 0) for j in range(longitud)] for i in range(longitud)]
+    for i in range(len(matriz)):
+        for j in range(len(matriz[0])):
+            if i == j:
+                matriz[i][j] = (1, 0)
+    return matriz
+
+def resta_matrices(m1, m2):
+    matrizResta = [[(0, 0) for j in range(len(m1))] for i in range(len(m1[0]))]
+    for i in range(len(m1)):
+        for j in range(len(m1[0])):
+            matrizResta[i][j] = cpx.restaComplex(m1[i][j], m2[i][j])
+    return matrizResta
+
 def valorEsperado(observable, estado):
     verificar_hermitiana = cpx.hermitianaMatrizComplex(observable)
     verificar_cuadrada = verifiMatrizCuadrada(observable)
@@ -15,19 +30,24 @@ def valorEsperado(observable, estado):
         valor_esperado = cpx.innerProductVectorComplex(accion, estado)
         return valor_esperado
 
-def varianza(ket, matriz):
-    valor_esperado = valorEsperado(ket, matriz)
-    matrizUnitaria = hacer_unitaria(matriz, valor_esperado)
-    resta = resta_matrices(matriz, matrizUnitaria)
-    produto = cpx.productMatrices(resta, resta)
-    produto1 = hacervector(cpx.accionMatrizVectorComplex(produto, ket), len(ket))
-    conjugada = hacervector(cpx.conjugadaMatrizComplex(ket), len(ket))
-    varian = producto_vectores(conjugada, produto1)
-    return varian
+def varianza(observable, estado):
+    valor_esperado = valorEsperado(observable, estado)
+    print("VALOR ESPERADO", valor_esperado)
+    long = len(observable)
+    matriz_unitaria = matrizUnitaria(long)
+    valor = cpx.escalarMatrizComplex(valor_esperado, matriz_unitaria)
+    resta = resta_matrices(observable, valor)
+    multi = cpx.productMatrices(resta, resta)
+    varianza = valorEsperado(multi, estado)
+    return varianza
 
-observable = [[(0, 0), (0, -1)],
-              [(0, 1), (0, 0)]]
+#observable = [[(0, 0), (0, -1)], [(0, 1), (0, 0)]]
 
-estado = [(1/math.sqrt(2), 0), (0, 1/math.sqrt(2))]
+#estado = [(1/math.sqrt(2), 0), (0, 1/math.sqrt(2))]
 
-print(valorEsperado(observable, estado))
+observable = [[(3, 0), (1, 2)],
+              [(1, -2), (-1, 0)]]
+
+estado = [(math.sqrt(2)/2, 0), (-math.sqrt(2)/2, 0)]
+
+print("VARIANZA", varianza(observable, estado))

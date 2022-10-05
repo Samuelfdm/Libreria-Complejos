@@ -23,4 +23,4 @@ def quantumSimulator():
     ctc.diagramaCuantico(tresClicks[1])
 
 #probabilisticSimulator()
-quantumSimulator()
+#quantumSimulator()

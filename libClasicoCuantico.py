@@ -78,7 +78,8 @@ def multiplesRendijasCuantico(rendijas, blancos, clicks):
     return matrix, click(matrix, vector, clicks)
 
 # DIAGRAMAS
-def diagramaProbabilistico(vector):
+def diagramaProbabilistico(v):
+    vector = [v[i][0] for i in range(len(v))]
     prob = [i for i in range(len(vector))]
     plt.bar(prob, vector, color="#FF0080")
     plt.show()

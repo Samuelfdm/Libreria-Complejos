@@ -48,7 +48,7 @@
 La versión N°3 es una simulación del experimento de la doble rendija. Donde se podrá ver el fenomeno de intererencia y su interpretación con matrices.
                                                  
 ### Presentado por
-Samuel Felipe Díaz M, Andrea Camila Torres González y Katherine
+Samuel Felipe Díaz M, Andrea Camila Torres González y Andres Serrato
 
 ### Docente
 Luis Daniel Benavidez Navarro

@@ -56,38 +56,32 @@ Luis Daniel Benavidez Navarro
 ### Asignatura
 CNYT (Ciencias Naturales y Tecnología)
 
-### Experimento de la rendija.
+### EXPERIMENTO DOBLE RENDIJA:
 
-El siguiente experimento se realizó por primera vez, utilizando luz por Thomas Young en 1801, que buscaba demostrar comportamiento ondulatorio de la luz y lo cual termino creando una nueva teoría completamente nueva, relacionada con la física cuántica y que muestra un fenómeno muy difícil de explicar.
+Este experimento busca demostrar el comportamiento ondulatorio de la luz que llevo a crear una nueva teoría relacionada con la física cuántica que muestra un fenómeno realmente complejo 
 
-### Como funciona:
+EXPLICACIÓN DEL EXPERIMENTO:
 
-Muchos explican este experimento como la interferencia entre las ondas que se generan al momento que la onda original pasa por la doble rendija, pero al momento en que se prueba con lanzar soltar de a un electrón a la doble rendija, nunca mandando más de uno a la vez, se vuelve a generar el mismo patrón, como sí se encontrara con algún tipo de interferencia al momento de pasar por las rendijas, la física cuántica explica esto como que el electrón interfiere consigo mismo en múltiples universos, entonces aun así se mande un único electrón se encontrar con interferencia propia y se creara el patrón de interferencia que conocemos y esperamos para este experimento.
+al enviar un haz de luz sobre la doble rendija este interactuara consigo mismo lo cual creara el patrón que conocemos, esto lo explica la física cuántica como la interferencia que tienen los electrones consigo mismos en los múltiples universos posibles lo cual termina generando que el patrón que se puede crear con ondas también lo podamos crear con un haz de luz. 
 
-### Experimento:
-Para realizar el experimento se debe seguir un procedimiento relativamente sencillo:
-Lo primero que se debe hacer es diseñar el número de rendijas que se quieran probar, esta puede ser de 1, 2, hasta el número que físicamente uno sea capaz de crear, el resultado en cada una de ellas debería ser muy parecido si no es que el mismo.
+MATERIALES:
 
-Al ya tener las rendijas se crea una maqueta que tenga al fondo una pantalla para apreciar las imágenes que se generen enfrente de la pantalla se coloca la rendija que se quiera probar para el experimento, esta debe ser capaz de cambiar entre las rejillas, y por último, a una distancia que, cuando se prenda el laser cubra completamente las rejillas, se pone el laser para que se genera la imagen en la pantalla.
+	Papel aluminio 
+	Laser 
+	Cartulina 
+	Bisturí 
+	Tabla  
 
-La dificultad a la hora de desarrollar el experimento es de poder crear las rendijas y que den la imagen que se busca.
+EXPERIMENTO: 
 
-### Materiales:
 
-Para el experimento se requieren los siguientes materiales:
-      
-1. Papel aluminio o hojas blancas para crear las rendijas.
-2. Marcador negro.
-3. Laser.
-4. Tabla de madera.
+CONSTRUCCIÓN:
 
-### Desarrollo:
+Primero se recorto la cartulina de tal forma en la cual se pudiera pegar papel aluminio y a su vez este dejara pasar el haz de luz enviado por un láser, luego de esto se creo una doble rendija con ayuda de un bisturí buscando dejar el espacio suficiente entre estas para que pasara el haz de luz al mismo tiempo, después se colocó una tabla de tal forma que fuera la base de nuestro laser y este pudiera emitir su rayo de una forma constante sobre la doble rendija  
 
-En nuestro caso realizamos el experimento con 3 rendijas diferentes, de 1, 2 y 3 ranuras, de las cuales se espera que experimentalmente nos den iguales o muy parecidos los resultados con cada una de ellas.
+DESARROLLO:
 
-### Experimento con 1 rendija:
-
-Para empezar, el primer montaje que se debe realizar es el de una rendija, en donde se busca ver el fenómeno físico que se produce cuando el láser atraviesa, teóricamente se espera:
+Para iniciar se hizo la demostración cuántica mediante el uso de nuestras librerías simulando una sola rendija, lo cual dio como resultado que existe un 100% de probabilidad de que el rayo laser entre por la única rendija que hay y después existe un 1/3 de probabilidad de tocar los siguientes blancos.  
 
 En donde la dispersión del láser se disminuye, pero la trayectoria se mantiene constante, el primer montaje cuenta de la rendija única y el laser que genera la proyección otra forma de entender el experimento a través de grafos se podría ver de la siguiente manera:
 
@@ -95,7 +89,7 @@ En donde la dispersión del láser se disminuye, pero la trayectoria se mantiene
 
 En donde la forma de matriz se aprecia de la siguiente manera:
 
-![](imgs/10.png)
+![](imgs/10.jpeg)
 
 Esto nos demuestra que hay 100 % de probabilidad que entre por la rendija única y después un 25% de tocar cualquiera de lo siguientes blancos y cada uno de los receptores es reflexivo consigo mismo.
 
